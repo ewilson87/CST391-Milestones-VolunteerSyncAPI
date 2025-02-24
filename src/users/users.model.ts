@@ -10,6 +10,7 @@ export interface User {
     passwordHash: string;
     role: UserRole;
     lastLogin?: Date;
+    organizationId?: number | null; // Nullable, only required for organizers
     createdAt: Date;
     updatedAt: Date;
 }

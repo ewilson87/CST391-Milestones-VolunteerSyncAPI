@@ -50,9 +50,18 @@ export const readUserByEmail: RequestHandler = async (req: Request, res: Respons
 export const createUser: RequestHandler = async (req: Request, res: Response) => {
     try {
         const okPacket: OkPacket = await UsersDao.createUser(req.body);
-        res.status(200).json(okPacket);
-    } catch (error) {
+        res.status(201).json(okPacket);
+    } catch (error: any) {
         console.error('[users.controller][createUser][Error] ', error);
+
+        // Handle duplicate email error
+        if (error.code === 'ER_DUP_ENTRY') {
+            res.status(400).json({
+                message: 'A user with this email already exists'
+            });
+            return;
+        }
+
         res.status(500).json({
             message: 'There was an error creating the user'
         });
@@ -64,8 +73,17 @@ export const updateUser: RequestHandler = async (req: Request, res: Response) =>
     try {
         const okPacket: OkPacket = await UsersDao.updateUser(req.body);
         res.status(200).json(okPacket);
-    } catch (error) {
+    } catch (error: any) {
         console.error('[users.controller][updateUser][Error] ', error);
+
+        // Handle duplicate email error
+        if (error.code === 'ER_DUP_ENTRY') {
+            res.status(400).json({
+                message: 'A user with this email already exists'
+            });
+            return;
+        }
+
         res.status(500).json({
             message: 'There was an error updating the user'
         });

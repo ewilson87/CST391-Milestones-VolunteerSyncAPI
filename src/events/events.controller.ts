@@ -52,9 +52,18 @@ export const searchEvents: RequestHandler = async (req: Request, res: Response) 
 export const createEvent: RequestHandler = async (req: Request, res: Response) => {
     try {
         const okPacket: OkPacket = await EventsDao.createEvent(req.body);
-        res.status(200).json(okPacket);
-    } catch (error) {
+        res.status(201).json(okPacket);
+    } catch (error: any) {
         console.error('[events.controller][createEvent][Error] ', error);
+
+        // Handle duplicate event error
+        if (error.code === 'ER_DUP_ENTRY') {
+            res.status(400).json({
+                message: 'An event with this title, date, time, and location already exists for this organization'
+            });
+            return;
+        }
+
         res.status(500).json({
             message: 'There was an error creating the event'
         });
@@ -66,8 +75,17 @@ export const updateEvent: RequestHandler = async (req: Request, res: Response) =
     try {
         const okPacket: OkPacket = await EventsDao.updateEvent(req.body);
         res.status(200).json(okPacket);
-    } catch (error) {
+    } catch (error: any) {
         console.error('[events.controller][updateEvent][Error] ', error);
+
+        // Handle duplicate event error
+        if (error.code === 'ER_DUP_ENTRY') {
+            res.status(400).json({
+                message: 'An event with this title, date, time, and location already exists for this organization'
+            });
+            return;
+        }
+
         res.status(500).json({
             message: 'There was an error updating the event'
         });

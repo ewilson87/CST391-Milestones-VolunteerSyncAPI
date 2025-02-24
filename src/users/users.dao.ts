@@ -21,14 +21,14 @@ export const readUserByEmail = async (email: string) => {
 // Create a new user in the database
 export const createUser = async (user: User) => {
     return execute<OkPacket>(userQueries.createUser, [
-        user.firstName, user.lastName, user.email, user.passwordHash, user.role
+        user.firstName, user.lastName, user.email, user.passwordHash, user.role, user.organizationId || null // Ensure null if not provided
     ]);
 };
 
 // Update an existing user
 export const updateUser = async (user: User) => {
     return execute<OkPacket>(userQueries.updateUser, [
-        user.firstName, user.lastName, user.email, user.passwordHash, user.role, user.userId
+        user.firstName, user.lastName, user.email, user.passwordHash, user.role, user.organizationId || null, user.userId
     ]);
 };
 

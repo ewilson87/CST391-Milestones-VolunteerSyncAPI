@@ -31,14 +31,14 @@ export const userQueries = {
     // Query to insert a new user
     createUser: `
         INSERT INTO volunteersync.users 
-            (first_name, last_name, email, password_hash, role)
-        VALUES (?, ?, ?, ?, ?)
+            (first_name, last_name, email, password_hash, role, organization_id)
+        VALUES (?, ?, ?, ?, ?, ?)
     `,
 
     // Query to update an existing user
     updateUser: `
         UPDATE volunteersync.users
-        SET first_name = ?, last_name = ?, email = ?, password_hash = ?, role = ?, updated_at = NOW()
+        SET first_name = ?, last_name = ?, email = ?, password_hash = ?, role = ?, organization_id = ?, updated_at = NOW()
         WHERE user_id = ?
     `,
 

@@ -49,7 +49,7 @@
 					"variable": [
 						{
 							"key": "user_id",
-							"value": "2"
+							"value": "1"
 						}
 					]
 				},
@@ -105,7 +105,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstName\": \"Test\",\n    \"lastName\": \"User\",\n    \"email\": \"user@example.com\",\n    \"passwordHash\": \"$2b$12$E2lPvGl8xxVbF5QLi/ehVOKhkglaoyySzFl2ccEcY9awWnV4vOGIO\",\n    \"role\": \"volunteer\"\n}\n",
+					"raw": "{\n    \"firstName\": \"Test 2\",\n    \"lastName\": \"User\",\n    \"email\": \"user2@example.com\",\n    \"passwordHash\": \"$2b$12$E2lPvGl8xxVbF5QLi/ehVOKhkglaoyySzFl2ccEcY9awWnV4vOGIO\",\n    \"role\": \"volunteer\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -148,7 +148,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"userId\": 3,\n    \"firstName\": \"Updated\",\n    \"lastName\": \"User\",\n    \"email\": \"user@example.com\",\n    \"passwordHash\": \"$2b$12$E2lPvGl8xxVbF5QLi/ehVOKhkglaoyySzFl2ccEcY9awWnV4vOGIO\",\n    \"role\": \"volunteer\"\n}",
+					"raw": "{\n    \"userId\": 6,\n    \"firstName\": \"Test\",\n    \"lastName\": \"User\",\n    \"email\": \"userupdated@example.com\",\n    \"passwordHash\": \"$2b$12$E2lPvGl8xxVbF5QLi/ehVOKhkglaoyySzFl2ccEcY9awWnV4vOGIO\",\n    \"role\": \"volunteer\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -216,7 +216,7 @@
 					"variable": [
 						{
 							"key": "userId",
-							"value": "2"
+							"value": "6"
 						}
 					]
 				},
@@ -273,7 +273,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{base_url}}/events/search?organizationId=1",
+					"raw": "{{base_url}}/events/search?city=San Diego",
 					"host": [
 						"{{base_url}}"
 					],
@@ -284,8 +284,7 @@
 					"query": [
 						{
 							"key": "city",
-							"value": "San Diego",
-							"disabled": true
+							"value": "San Diego"
 						},
 						{
 							"key": "state",
@@ -294,12 +293,13 @@
 						},
 						{
 							"key": "date",
-							"value": null,
+							"value": "",
 							"disabled": true
 						},
 						{
 							"key": "organizationId",
-							"value": "1"
+							"value": "1",
+							"disabled": true
 						}
 					]
 				},
@@ -329,7 +329,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"title\": \"Beach Cleanup\",\n    \"description\": \"Join us in cleaning up the beach to help the environment.\",\n    \"eventDate\": \"2025-03-01\",\n    \"eventTime\": \"09:00:00\",  \n    \"locationName\": \"Pacific Beach\",\n    \"address\": \"123 Beach Blvd, San Diego, CA\",\n    \"city\": \"San Diego\",\n    \"state\": \"CA\",\n    \"numNeeded\": 20,\n    \"numSignedUp\": 0,\n    \"createdBy\": 1,  \n    \"organizationId\": 1\n}\n",
+					"raw": "{\n    \"title\": \"Beach Cleanup 2\",\n    \"description\": \"Join us in cleaning up the beach to help the environment.\",\n    \"eventDate\": \"2025-03-01\",\n    \"eventTime\": \"09:00:00\",  \n    \"locationName\": \"Pacific Beach\",\n    \"address\": \"123 Beach Blvd, San Diego, CA\",\n    \"city\": \"San Diego\",\n    \"state\": \"CA\",\n    \"numNeeded\": 20,\n    \"numSignedUp\": 0,\n    \"createdBy\": 1,  \n    \"organizationId\": 1\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -371,7 +371,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"eventId\": 2,\n    \"title\": \"Beach Cleanup - Updated\",\n    \"description\": \"Join us in cleaning up the beach to help the environment.\",\n    \"eventDate\": \"2025-03-01\",\n    \"eventTime\": \"09:00:00\",  \n    \"locationName\": \"Pacific Beach\",\n    \"address\": \"123 Beach Blvd, San Diego, CA\",\n    \"city\": \"San Diego\",\n    \"state\": \"CA\",\n    \"numNeeded\": 20,\n    \"numSignedUp\": 0,\n    \"createdBy\": 1,  \n    \"organizationId\": 1\n}\n",
+					"raw": "{\n    \"eventId\": 6,\n    \"title\": \"Beach Cleanup - Updated 2\",\n    \"description\": \"Join us in cleaning up the beach to help the environment.\",\n    \"eventDate\": \"2025-03-01\",\n    \"eventTime\": \"09:00:00\",  \n    \"locationName\": \"Pacific Beach\",\n    \"address\": \"123 Beach Blvd, San Diego, CA\",\n    \"city\": \"San Diego\",\n    \"state\": \"CA\",\n    \"numNeeded\": 20,\n    \"numSignedUp\": 0,\n    \"createdBy\": 1,  \n    \"organizationId\": 1\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -432,7 +432,7 @@
 					"variable": [
 						{
 							"key": "eventId",
-							"value": "1"
+							"value": "6"
 						}
 					]
 				},
@@ -475,7 +475,7 @@
 					"variable": [
 						{
 							"key": "organization_id",
-							"value": "1"
+							"value": "3"
 						}
 					]
 				},
@@ -495,7 +495,8 @@
 							"});",
 							""
 						],
-						"type": "text/javascript"
+						"type": "text/javascript",
+						"packages": {}
 					}
 				}
 			],
@@ -504,7 +505,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+					"raw": "{\n    \"name\": \"Helping Hands milestone 3\",\n    \"description\": \"A community-driven organization focused on volunteering efforts.\",\n    \"contactEmail\": \"info@helpinghands.org\",\n    \"contactPhone\": \"555-123-4567\",\n    \"website\": \"https://helpinghands.org\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -512,12 +513,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/info",
+					"raw": "{{base_url}}/organizations",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"info"
+						"organizations"
 					]
 				},
 				"description": "### Create Organization\n\nThis endpoint is used to create a new organization.\n\n#### Request Body\n\n- name (string): The name of the organization.\n    \n- description (string): A brief description of the organization.\n    \n- contactEmail (string): The contact email for the organization.\n    \n- contactPhone (string): The contact phone number for the organization.\n    \n- website (string): The website URL of the organization.\n    \n\n#### Response\n\nUpon successful creation, the response will have a status code of 200 and return a JSON object with the following fields:\n\n- fieldCount\n    \n- affectedRows\n    \n- insertId\n    \n- serverStatus\n    \n- warningCount\n    \n- message\n    \n- protocol41\n    \n- changedRows"
@@ -546,7 +547,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"organizationId\": 1,\n    \"name\": \"Helping Hands - Updated with put API\",\n    \"description\": \"A community-driven organization focused on volunteering efforts.\",\n    \"contactEmail\": \"info@helpinghands.org\",\n    \"contactPhone\": \"555-123-4567\",\n    \"website\": \"https://helpinghands.org\"\n}\n",
+					"raw": "{\n    \"organizationId\": 7,\n    \"name\": \"Helping Hands Milestone 3- Updated with put API\",\n    \"description\": \"A community-driven organization focused on volunteering efforts.\",\n    \"contactEmail\": \"info@helpinghands.org\",\n    \"contactPhone\": \"555-123-4567\",\n    \"website\": \"https://helpinghands.org\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -607,7 +608,7 @@
 					"variable": [
 						{
 							"key": "organizationId",
-							"value": "3"
+							"value": "7"
 						}
 					]
 				},
@@ -707,7 +708,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"userId\": 3,\n    \"eventId\": 2,\n    \"signupDate\": \"2025-02-22\",\n    \"status\": \"registered\"\n}\n",
+					"raw": "{\n    \"userId\": 1,\n    \"eventId\": 2,\n    \"signupDate\": \"2025-02-22\",\n    \"status\": \"registered\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -728,7 +729,7 @@
 			"response": []
 		},
 		{
-			"name": "Delete signups",
+			"name": "Delete signups:signupId",
 			"event": [
 				{
 					"listen": "test",
@@ -757,15 +758,29 @@
 					}
 				},
 				"url": {
-					"raw": "{{base_url}}/signups",
+					"raw": "{{base_url}}/signups/:signupId",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"signups"
+						"signups",
+						":signupId"
+					],
+					"query": [
+						{
+							"key": null,
+							"value": "",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "signupId",
+							"value": "12"
+						}
 					]
 				},
-				"description": "This is an HTTP DELETE request used to delete data that was previously created via a POST request. The request typically includes an identifier in the URL to identify the entity being deleted (e.g., `id=1`).\n\n### Request Body\n\nThis request does not require a request body.\n\n### Response Body\n\nThis request does not return a response body.\n\n### Response Codes\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+				"description": "### Delete Signup\n\nThis endpoint is used to delete a specific signup by providing the `signupId` in the URL.\n\n#### Request\n\n- Method: DELETE\n    \n- URL: `{{base_url}}/signups/:signupId`\n    \n\n#### Response\n\nThe response is in JSON format and follows the schema below:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"fieldCount\": {\n      \"type\": \"number\"\n    },\n    \"affectedRows\": {\n      \"type\": \"number\"\n    },\n    \"insertId\": {\n      \"type\": \"number\"\n    },\n    \"serverStatus\": {\n      \"type\": \"number\"\n    },\n    \"warningCount\": {\n      \"type\": \"number\"\n    },\n    \"message\": {\n      \"type\": \"string\"\n    },\n    \"protocol41\": {\n      \"type\": \"boolean\"\n    },\n    \"changedRows\": {\n      \"type\": \"number\"\n    }\n  }\n}\n\n ```"
 			},
 			"response": []
 		}

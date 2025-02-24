@@ -44,8 +44,18 @@ export const createSignup: RequestHandler = async (req: Request, res: Response) 
     try {
         const okPacket: OkPacket = await SignupsDao.createSignup(req.body);
         res.status(200).json(okPacket);
-    } catch (error) {
+    } catch (error: any) {
         console.error('[signups.controller][createSignup][Error] ', error);
+
+        // Check if the error is a duplicate key error
+        if (error.code === 'ER_DUP_ENTRY') {
+            res.status(400).json({
+                message: 'User is already signed up for this event'
+            });
+            return;
+        }
+
+        // If the error is not a duplicate key error, return a generic error message
         res.status(500).json({
             message: 'There was an error creating the signup'
         });

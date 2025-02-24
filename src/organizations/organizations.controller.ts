@@ -33,9 +33,18 @@ export const readOrganizationById: RequestHandler = async (req: Request, res: Re
 export const createOrganization: RequestHandler = async (req: Request, res: Response) => {
     try {
         const okPacket: OkPacket = await OrganizationsDao.createOrganization(req.body);
-        res.status(200).json(okPacket);
-    } catch (error) {
+        res.status(201).json(okPacket);
+    } catch (error: any) {
         console.error('[organizations.controller][createOrganization][Error] ', error);
+
+        // Handle duplicate organization name error
+        if (error.code === 'ER_DUP_ENTRY') {
+            res.status(400).json({
+                message: 'An organization with this name already exists'
+            });
+            return;
+        }
+
         res.status(500).json({
             message: 'There was an error creating the organization'
         });
@@ -47,8 +56,17 @@ export const updateOrganization: RequestHandler = async (req: Request, res: Resp
     try {
         const okPacket: OkPacket = await OrganizationsDao.updateOrganization(req.body);
         res.status(200).json(okPacket);
-    } catch (error) {
+    } catch (error: any) {
         console.error('[organizations.controller][updateOrganization][Error] ', error);
+
+        // Handle duplicate organization name error
+        if (error.code === 'ER_DUP_ENTRY') {
+            res.status(400).json({
+                message: 'An organization with this name already exists'
+            });
+            return;
+        }
+
         res.status(500).json({
             message: 'There was an error updating the organization'
         });
