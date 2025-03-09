@@ -783,6 +783,82 @@
 				"description": "### Delete Signup\n\nThis endpoint is used to delete a specific signup by providing the `signupId` in the URL.\n\n#### Request\n\n- Method: DELETE\n    \n- URL: `{{base_url}}/signups/:signupId`\n    \n\n#### Response\n\nThe response is in JSON format and follows the schema below:\n\n``` json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"fieldCount\": {\n      \"type\": \"number\"\n    },\n    \"affectedRows\": {\n      \"type\": \"number\"\n    },\n    \"insertId\": {\n      \"type\": \"number\"\n    },\n    \"serverStatus\": {\n      \"type\": \"number\"\n    },\n    \"warningCount\": {\n      \"type\": \"number\"\n    },\n    \"message\": {\n      \"type\": \"string\"\n    },\n    \"protocol41\": {\n      \"type\": \"boolean\"\n    },\n    \"changedRows\": {\n      \"type\": \"number\"\n    }\n  }\n}\n\n ```"
 			},
 			"response": []
+		},
+		{
+			"name": "Get organization by name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/organizations/name/:name",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"organizations",
+						"name",
+						":name"
+					],
+					"variable": [
+						{
+							"key": "name",
+							"value": "Helping Hands"
+						}
+					]
+				},
+				"description": "### Get Organization by Name\n\nThis endpoint retrieves details of a specific organization by providing the organization name in the URL.\n\n#### Request\n\n- Method: GET\n    \n- URL: `{{base_url}}/organizations/name/:name`\n    \n\n#### Response\n\nThe response will be a JSON object containing the details of the organization with the following fields:\n\n- `organizationId` (number): The unique identifier for the organization.\n    \n- `name` (string): The name of the organization.\n    \n- `description` (string): The description of the organization.\n    \n- `contactEmail` (string): The contact email of the organization.\n    \n- `contactPhone` (string): The contact phone number of the organization.\n    \n- `website` (string): The website URL of the organization.\n    \n- `createdAt` (string): The timestamp of when the organization was created.\n    \n- `updatedAt` (string): The timestamp of when the organization was last updated.\n    \n\nIf no organization is found with the provided name, a 404 status code will be returned with a message indicating that the organization was not found."
+			},
+			"response": []
+		},
+		{
+			"name": "Link user to organization",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"organizationId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/users/:userId/link-organization",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"link-organization"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "2"
+						}
+					]
+				},
+				"description": "### Link User to Organization\n\nThis endpoint links a user to an organization, setting them as the organization leader.\n\n#### Request\n\n- Method: POST\n    \n- URL: `{{base_url}}/users/:userId/link-organization`\n    \n- Path Parameters:\n    - `userId` (number): The ID of the user to link to the organization\n\n- Request Body:\n    - `organizationId` (number): The ID of the organization to link the user to\n\n#### Response\n\nUpon successful execution, the API returns a `200 OK` status with a JSON object containing:\n\n- `message` (string): Confirmation message that the user was successfully linked to the organization\n    \n- `userId` (number): The ID of the user that was linked\n    \n- `organizationId` (number): The ID of the organization that the user was linked to\n    \n- `response` (object): Details of the database update operation\n\nIf the user is not already an organizer, their role will be updated to 'organizer' automatically.\n\nError responses:\n- 400: Organization ID is required\n- 404: User not found / Organization not found\n- 500: There was an error linking the user to the organization"
+			},
+			"response": []
 		}
 	],
 	"variable": [

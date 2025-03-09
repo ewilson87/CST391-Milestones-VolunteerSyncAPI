@@ -59,5 +59,19 @@ export const eventQueries = {
     deleteEvent: `
         DELETE FROM volunteersync.events
         WHERE event_id = ?
+    `,
+
+    // Query to increment the num_signed_up count for an event
+    incrementSignupCount: `
+        UPDATE volunteersync.events
+        SET num_signed_up = num_signed_up + 1, updated_at = NOW()
+        WHERE event_id = ?
+    `,
+
+    // Query to decrement the num_signed_up count for an event
+    decrementSignupCount: `
+        UPDATE volunteersync.events
+        SET num_signed_up = GREATEST(num_signed_up - 1, 0), updated_at = NOW()
+        WHERE event_id = ?
     `
 };

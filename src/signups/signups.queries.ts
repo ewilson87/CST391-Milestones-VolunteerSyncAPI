@@ -25,11 +25,20 @@ export const signupQueries = {
         WHERE event_id = ?
     `,
 
+    // Query to fetch a specific signup by ID
+    readSignupById: `
+        SELECT 
+            signup_id AS signupId, user_id AS userId, event_id AS eventId, 
+            signup_date AS signupDate, status
+        FROM volunteersync.signups
+        WHERE signup_id = ?
+    `,
+
     // Query to insert a new signup (user registers for an event)
     createSignup: `
         INSERT INTO volunteersync.signups 
             (user_id, event_id, signup_date, status)
-        VALUES (?, ?, ?, ?)
+        VALUES (?, ?, NOW(), 'registered')
     `,
 
     // Query to delete a signup (user de-registers from an event)

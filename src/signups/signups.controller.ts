@@ -1,6 +1,7 @@
 import { Request, RequestHandler, Response } from 'express';
 import { OkPacket } from 'mysql';
 import * as SignupsDao from './signups.dao';
+import * as EventsDao from '../events/events.dao';
 
 export const readSignups: RequestHandler = async (req: Request, res: Response) => {
     try {
@@ -42,7 +43,12 @@ export const readSignupsByEventId: RequestHandler = async (req: Request, res: Re
 
 export const createSignup: RequestHandler = async (req: Request, res: Response) => {
     try {
+        // First, create the signup record
         const okPacket: OkPacket = await SignupsDao.createSignup(req.body);
+
+        // Then, increment the event's signup count
+        await EventsDao.incrementSignupCount(req.body.eventId);
+
         res.status(200).json(okPacket);
     } catch (error: any) {
         console.error('[signups.controller][createSignup][Error] ', error);
@@ -65,7 +71,23 @@ export const createSignup: RequestHandler = async (req: Request, res: Response) 
 export const deleteSignup: RequestHandler = async (req: Request, res: Response) => {
     try {
         const signupId = parseInt(req.params.signupId);
+
+        // First, get the signup to retrieve the eventId
+        const signup = await SignupsDao.readSignupById(signupId);
+
+        if (!signup) {
+            res.status(404).json({
+                message: 'Signup not found'
+            });
+            return;
+        }
+
+        // Delete the signup
         const response = await SignupsDao.deleteSignup(signupId);
+
+        // Decrement the event's signup count
+        await EventsDao.decrementSignupCount(signup.eventId);
+
         res.status(200).json(response);
     } catch (error) {
         console.error('[signups.controller][deleteSignup][Error] ', error);

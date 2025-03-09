@@ -13,7 +13,7 @@ export interface Event {
     state: string;
     numNeeded: number;
     numSignedUp: number;
-    createdBy: number; // References User ID
-    organizationId: number; // References Organization ID
-    organization?: Organization; // Optional: Includes organization details if needed
+    createdBy: number;
+    organizationId: number;
+    organization?: Organization;
 }

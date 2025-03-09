@@ -18,6 +18,16 @@ export const organizationQueries = {
         WHERE organization_id = ?
     `,
 
+    // Query to fetch a specific organization by name
+    readOrganizationByName: `
+        SELECT 
+            organization_id AS organizationId, name, description, 
+            contact_email AS contactEmail, contact_phone AS contactPhone, 
+            website, created_at AS createdAt, updated_at AS updatedAt
+        FROM volunteersync.organizations
+        WHERE name = ?
+    `,
+
     // Query to insert a new organization
     createOrganization: `
         INSERT INTO volunteersync.organizations 

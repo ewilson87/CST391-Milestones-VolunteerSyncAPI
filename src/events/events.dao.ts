@@ -45,3 +45,13 @@ export const updateEvent = async (event: Event) => {
 export const deleteEvent = async (eventId: number) => {
     return execute<OkPacket>(eventQueries.deleteEvent, [eventId]);
 };
+
+// Increment the number of signups for an event
+export const incrementSignupCount = async (eventId: number) => {
+    return execute<OkPacket>(eventQueries.incrementSignupCount, [eventId]);
+};
+
+// Decrement the number of signups for an event
+export const decrementSignupCount = async (eventId: number) => {
+    return execute<OkPacket>(eventQueries.decrementSignupCount, [eventId]);
+};

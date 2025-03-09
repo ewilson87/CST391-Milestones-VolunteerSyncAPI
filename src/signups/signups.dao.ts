@@ -18,10 +18,16 @@ export const readSignupsByEventId = async (eventId: number) => {
     return execute<Signup[]>(signupQueries.readSignupsByEventId, [eventId]);
 };
 
+// Fetch a specific signup by ID
+export const readSignupById = async (signupId: number) => {
+    return execute<Signup[]>(signupQueries.readSignupById, [signupId])
+        .then(signups => signups[0]); // Return the first (and only) signup
+};
+
 // Register a user for an event
 export const createSignup = async (signup: Signup) => {
     return execute<OkPacket>(signupQueries.createSignup, [
-        signup.userId, signup.eventId, signup.signupDate, signup.status
+        signup.userId, signup.eventId
     ]);
 };
 

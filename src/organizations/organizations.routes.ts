@@ -13,6 +13,11 @@ router.
     route('/organizations/:organizationId').
     get(OrganizationsController.readOrganizationById);
 
+// GET /organizations/name/:name - Retrieve a specific organization by name
+router.
+    route('/organizations/name/:name').
+    get(OrganizationsController.readOrganizationByName);
+
 // POST /organizations - Create a new organization
 router.
     route('/organizations').

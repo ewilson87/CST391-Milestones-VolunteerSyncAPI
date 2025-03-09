@@ -13,6 +13,11 @@ export const readOrganizationById = async (organizationId: number) => {
     return execute<Organization[]>(organizationQueries.readOrganizationById, [organizationId]);
 };
 
+// Fetch a specific organization by name
+export const readOrganizationByName = async (name: string) => {
+    return execute<Organization[]>(organizationQueries.readOrganizationByName, [name]);
+};
+
 // Create a new organization
 export const createOrganization = async (organization: Organization) => {
     return execute<OkPacket>(organizationQueries.createOrganization, [

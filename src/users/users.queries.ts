@@ -4,7 +4,7 @@ export const userQueries = {
         SELECT 
             user_id AS userId, first_name AS firstName, last_name AS lastName, 
             email, password_hash AS passwordHash, role, 
-            last_login AS lastLogin, created_at AS createdAt, updated_at AS updatedAt
+            last_login AS lastLogin, created_at AS createdAt, updated_at AS updatedAt, organization_id AS organizationId 
         FROM volunteersync.users
     `,
 
@@ -13,7 +13,7 @@ export const userQueries = {
         SELECT 
             user_id AS userId, first_name AS firstName, last_name AS lastName, 
             email, password_hash AS passwordHash, role, 
-            last_login AS lastLogin, created_at AS createdAt, updated_at AS updatedAt
+            last_login AS lastLogin, created_at AS createdAt, updated_at AS updatedAt, organization_id AS organizationId
         FROM volunteersync.users
         WHERE user_id = ?
     `,
@@ -23,7 +23,7 @@ export const userQueries = {
         SELECT 
             user_id AS userId, first_name AS firstName, last_name AS lastName, 
             email, password_hash AS passwordHash, role, 
-            last_login AS lastLogin, created_at AS createdAt, updated_at AS updatedAt
+            last_login AS lastLogin, created_at AS createdAt, updated_at AS updatedAt, organization_id AS organizationId
         FROM volunteersync.users
         WHERE email = ?
     `,

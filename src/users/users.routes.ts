@@ -33,4 +33,9 @@ router.
     route('/users/:userId').
     delete(UsersController.deleteUser);
 
+// POST /users/:userId/link-organization - Link a user to an organization
+router.
+    route('/users/:userId/link-organization').
+    post(UsersController.linkUserToOrganization);
+
 export default router;
